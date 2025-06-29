@@ -1,24 +1,17 @@
-const ExtraTurnOnSixRule = require("../rules/extraTurnOnSix.rule");
-const MustRollOneToStartRule = require("../rules/mustRollOneToStart.rule");
-const CannotMoveMoreThanSizeRule = require("../rules/cannotMoveMoreThanSize.rule");
-
 class RuleEngine {
-  constructor(board) {
+  constructor(board, rules = []) {
     if (!board) {
       throw new Error("Board must be specified");
     }
     this.board = board;
-    this.extraTurnOnSixRule = new ExtraTurnOnSixRule();
-    this.mustRollOneToStartRule = new MustRollOneToStartRule();
-    this.cannotMoveMoreThanSizeRule = new CannotMoveMoreThanSizeRule(this.board);
+    this.rules = rules;
+
   }
 
-  evaluateRules(player, roll) {
-    const extraTurn = this.extraTurnOnSixRule.isApplicable(roll);
-    const mustRollOne = this.mustRollOneToStartRule.isApplicable(player, roll);
-    const canMove = this.cannotMoveMoreThanSizeRule.isApplicable(player, roll);
-
-    return { extraTurn, mustRollOne, canMove };
+    evaluateRules(player, roll) {
+    return this.rules.reduce((acc, rule) => {
+      return { ...acc, ...rule.isApplicable(player, roll) };
+    }, {});
   }
 }
 

@@ -7,9 +7,9 @@ class MustRollOneToStart extends BaseRule {
 
   isApplicable(player, diceRoll) {
       if (!player.hasStarted) {
-        return diceRoll === 1;
+        return { canStart: diceRoll === 1 };
       }
-      return true;
+      return { canStart: true };
     }
 }
 

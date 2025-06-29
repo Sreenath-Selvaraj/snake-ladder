@@ -7,9 +7,9 @@ class ExtraTurnOnSixRule extends BaseRule {
 
   isApplicable(diceRoll) {
     if (diceRoll === 6) {
-      return true;
+      return { extraTurn: true };
     }
-    return false;
+    return { extraTurn: false };
   }
 }
 

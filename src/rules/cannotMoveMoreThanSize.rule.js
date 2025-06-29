@@ -9,9 +9,9 @@ class CannotMoveMoreThanSizeRule extends BaseRule {
   isApplicable(player, roll) {
     const newPosition = player.position + roll;
     if (newPosition > this.board.size) {
-      return false
+      return { canMove: false };
     }
-    return true
+    return { canMove: true }
   }
 }
 
