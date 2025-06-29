@@ -5,6 +5,10 @@ class BaseRule {
     }
   }
 
+  isApplicable() {
+    throw new Error("isApplicable method must be implemented in derived classes.");
+  }
+
 }
 
 module.exports = BaseRule;
