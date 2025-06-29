@@ -33,7 +33,7 @@ function initializeGame() {
     Ladders.push(new Ladder(ladder.start, ladder.end));
   }
 
-  const board = new Board(board_size, Snakes, Ladders, Players);
+  const board = new Board(board_size, Snakes, Ladders);
   const dice = new Dice(dice_faces);
   const Rules = [
     new ExtraTurnOnSixRule(),
